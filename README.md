@@ -23,7 +23,7 @@ The pipeline is built on an "Orchestrate-Transform-Visualize" logic:
 ---
 
 ## 📊 Dashboard Preview
-![Kenya Child Health Overview Dashboard](docs/dashboard_screenshot.png)
+![Kenya Child Health Overview Dashboard](docs/dashboard.png)
 > *Dashboard showing Stunting Trends, Under-5 Mortality KPIs, and Urban/Rural Disparities.*
 
 ---
