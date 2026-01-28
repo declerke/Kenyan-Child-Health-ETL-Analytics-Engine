@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw data ingested from WHO Global Health Observatory
+    database: kenya_health_db
+    schema: public
+    tables:
+      - name: stg_health_indicators_raw
+        description: Raw health indicators CSV data from WHO GHO
+        columns:
+          - name: indicator
+            description: Name of the health indicator
+          - name: location
+            description: Country name
+          - name: period
+            description: Time period for the measurement
+          - name: value
+            description: Indicator value
+          - name: sex
+            description: Sex dimension (male, female, both sexes)
+          - name: residence
+            description: Residence type (urban, rural, total)

@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: stg_health_indicators
+    description: Cleaned and standardized WHO GHO health indicators for Kenya
+    columns:
+      - name: indicator_id
+        description: Unique identifier for each indicator measurement
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: Year of measurement
+        tests:
+          - not_null
+      - name: value
+        description: Indicator value (numeric)
+
+  - name: int_child_health_indicators
+    description: Child health-focused indicators with categorization
+    columns:
+      - name: indicator_category
+        description: Category of indicator (Stunting, Wasting, Underweight, Anaemia, Mortality)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Stunting', 'Wasting', 'Underweight', 'Anaemia', 'Mortality', 'Immunization']
+      - name: data_quality_score
+        description: Quality score from 0-100
+        tests:
+          - not_null
+
+  - name: fact_child_health
+    description: Fact table for child health metrics in Kimball star schema
+    columns:
+      - name: fact_key
+        description: Primary key for fact table
+        tests:
+          - unique
+          - not_null
+      - name: time_key
+        description: Foreign key to dim_time
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_time')
+              field: year
+      - name: demographic_key
+        description: Foreign key to dim_demographics
+        tests:
+          - relationships:
+              to: ref('dim_demographics')
+              field: demographic_key
+
+  - name: dim_time
+    description: Time dimension table
+    columns:
+      - name: year
+        description: Year (primary key)
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_demographics
+    description: Demographics/equity dimension table
+    columns:
+      - name: demographic_key
+        description: Surrogate key (primary key)
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_kpi_summary
+    description: Pre-aggregated KPIs for dashboard
+    columns:
+      - name: indicator_category
+        description: Health indicator category
+        tests:
+          - not_null
+      - name: avg_indicator_value
+        description: Average indicator value across time period
