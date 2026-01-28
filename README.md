@@ -1,4 +1,4 @@
-#  EquityInsight: Kenyan Child Health ETL & Analytics Engine
+# 🇰🇪 EquityInsight: Kenyan Child Health ETL & Analytics Engine
 
 **EquityInsight** is a self-contained data engineering solution designed to bridge the gap between raw WHO health extracts and professional community health insights. It integrates complex health indicators, performs rigorous data modeling with dbt, and delivers interactive KPIs through a local Metabase dashboard.
 
